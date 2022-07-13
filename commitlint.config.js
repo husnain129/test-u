@@ -7,6 +7,8 @@
 // refactor: A code change that neither fixes a bug nor adds a feature
 // style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 // test: Adding missing tests or correcting existing tests
+// component: A new component
+// module: A new module
 
 module.exports = {
   extends: ['@commitlint/config-conventional'],
@@ -44,6 +46,8 @@ module.exports = {
         'translation',
         'security',
         'changeset',
+        'component',
+        'module',
       ],
     ],
   },

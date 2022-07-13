@@ -1,11 +1,11 @@
+import Login from '@/features/authentication/components/Login';
 import { Flex } from '@chakra-ui/react';
-import Login from '../features/authentication/components/Login';
 
-const LoginPage = () => {
+const login = () => {
   return (
     <Flex w="full" bg="#e9ecf6" h="100vh">
       <Login />
     </Flex>
   );
 };
-export default LoginPage;
+export default login;

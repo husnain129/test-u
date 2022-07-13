@@ -1,11 +1,9 @@
-import { Button, Flex } from '@chakra-ui/react';
-import type { NextPage } from 'next';
+import { Flex, Text } from '@chakra-ui/react';
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <Flex w="full" h="full">
-      <Button colorScheme={'button'}>Hello</Button>
-      <Button colorScheme={'red'}>Hello red</Button>
+      <Text>Hello</Text>
     </Flex>
   );
 };
