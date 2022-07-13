@@ -28,10 +28,11 @@ const Login = () => {
         alignItems="center"
         justifyContent={'center'}
         w="26.4em"
-        h="25em"
+        minH="25em"
         bg="white"
         borderRadius=".4em"
         gap={'2em'}
+        py="2em"
       >
         <Text as={'h1'} fontSize="1.3em" fontWeight={'semibold'}>
           Sign in with your email address
