@@ -17,7 +17,7 @@ export default async function handler(
         name,
         email,
         password,
-        role: role || 'USER',
+        role: role || 'STUDENT',
       },
     });
     res.setHeader('Set-Cookie', [

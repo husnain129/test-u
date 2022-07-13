@@ -11,8 +11,9 @@ datasource db {
 }
 
 enum Role {
+  STUDENT
+  TUTOR
   ADMIN
-  USER
 }
 
 model User {
@@ -20,6 +21,6 @@ model User {
   name      String
   email     String   @unique
   password  String
-  role      Role     @default(USER)
+  role      Role     @default(STUDENT)
   createdAt DateTime @default(now())
 }

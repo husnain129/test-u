@@ -1,20 +1,21 @@
 import {
   Box,
   Button,
-  Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Input,
+  Radio,
+  RadioGroup,
   Text,
   VStack,
 } from '@chakra-ui/react';
 import { Field, Formik } from 'formik';
 import { useRouter } from 'next/router';
-import { LoginSchema } from '../utils/form-validation';
+import { SignupSchema } from '../utils/form-validation';
 
-const Login = () => {
+const Signup = () => {
   const router = useRouter();
   return (
     <Flex
@@ -37,25 +38,39 @@ const Login = () => {
         py="2em"
       >
         <Text as={'h1'} fontSize="1.3em" fontWeight={'semibold'}>
-          Please Login
+          Create New Account
         </Text>
         <Box rounded="md">
           <Formik
             initialValues={{
+              name: '',
               email: '',
               password: '',
-              rememberMe: false,
+              role: 'STUDENT',
             }}
-            validationSchema={LoginSchema}
+            validationSchema={SignupSchema}
             onSubmit={(values) => {
-              alert(JSON.stringify(values, null, 2));
+              console.log(JSON.stringify(values, null, 2));
             }}
           >
             {({ handleSubmit, errors, touched }) => (
               <form onSubmit={handleSubmit}>
                 <VStack spacing={4} align="flex-start">
+                  <FormControl isInvalid={touched.name}>
+                    <FormLabel htmlFor="name">Name</FormLabel>
+                    <Field
+                      w="20em"
+                      h="2.4em"
+                      as={Input}
+                      id="name"
+                      name="name"
+                      type="text"
+                      variant="outline"
+                    />
+                    <FormErrorMessage>{errors.name}</FormErrorMessage>
+                  </FormControl>
                   <FormControl isInvalid={!!errors.email && touched.email}>
-                    <FormLabel htmlFor="email">Email Address</FormLabel>
+                    <FormLabel htmlFor="email">Email</FormLabel>
                     <Field
                       w="20em"
                       h="2.4em"
@@ -82,16 +97,32 @@ const Login = () => {
                     />
                     <FormErrorMessage>{errors.password}</FormErrorMessage>
                   </FormControl>
-                  <Field
-                    as={Checkbox}
-                    id="rememberMe"
-                    name="rememberMe"
-                    colorScheme="purple"
-                  >
-                    Remember me?
-                  </Field>
+                  <RadioGroup display={'flex'} gap="1em">
+                    <label>
+                      <Field
+                        as={Radio}
+                        id="STUDENT"
+                        name="STUDENT"
+                        colorScheme="purple"
+                        value="STUDENT"
+                      >
+                        Student
+                      </Field>
+                    </label>
+                    <label>
+                      <Field
+                        as={Radio}
+                        id="TUTOR"
+                        name="TUTOR"
+                        colorScheme="purple"
+                        value="TUTOR"
+                      >
+                        Tutor
+                      </Field>
+                    </label>
+                  </RadioGroup>
                   <Button type="submit" colorScheme="purple" width="full">
-                    Login
+                    Signup
                   </Button>
                 </VStack>
               </form>
@@ -101,22 +132,19 @@ const Login = () => {
       </Flex>
       <Flex flexDir={'column'} gap=".2em" w="26.4em" alignItems={'flex-start'}>
         <Flex gap={'.3em'}>
-          <Text fontSize={'.9em'}>{`Don't`} have an account?</Text>
+          <Text fontSize={'.9em'}>Already have an account?</Text>
           <Text
-            onClick={() => router.push('/signup')}
+            onClick={() => router.push('/login')}
             fontSize={'.9em'}
             cursor="pointer"
             color={'#b0b7cb'}
           >
-            SignUp
+            SignIn
           </Text>
         </Flex>
-        <Text fontSize={'.9em'} cursor="pointer" color="#b0b7cb">
-          Forgot your password?
-        </Text>
       </Flex>
     </Flex>
   );
 };
 
-export default Login;
+export default Signup;
