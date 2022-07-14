@@ -11,17 +11,20 @@ import {
   Radio,
   RadioGroup,
   Text,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
 import { User } from '@prisma/client';
 import { Field, Formik } from 'formik';
 import { useRouter } from 'next/router';
+import toastConfig from 'utils/toast-config';
 import { SignupSchema } from '../utils/form-validation';
 
 const Signup = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state) => state.user);
+  const { loading, error } = useAppSelector((state) => state.user);
+  const toast = useToast();
   return (
     <Flex
       w="full"
@@ -61,6 +64,12 @@ const Signup = () => {
               role,
             }: Omit<User, 'id' | 'createdAt'>) => {
               dispatch(UserActions.signup({ email, name, password, role }));
+              toast(
+                toastConfig({
+                  action: error ? 'error' : 'success',
+                  message: error ? 'error' : 'Successfully created account',
+                })
+              );
             }}
           >
             {({ handleSubmit, errors, touched }) => (
