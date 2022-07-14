@@ -3,7 +3,7 @@ const setting = {
 };
 
 const getEnv = (name: keyof typeof setting) => {
-  return setting[name] || 'secret';
+  return setting[name];
 };
 
 export default getEnv;

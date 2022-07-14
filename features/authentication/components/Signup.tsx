@@ -16,7 +16,6 @@ import {
 } from '@chakra-ui/react';
 import { User } from '@prisma/client';
 import { Field, Formik } from 'formik';
-import useJWT from 'hooks/useJWT';
 import { useRouter } from 'next/router';
 import toastConfig from 'utils/toast-config';
 import { SignupSchema } from '../utils/form-validation';
@@ -26,7 +25,7 @@ const Signup = () => {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.user);
   const toast = useToast();
-  console.log('secret is: ', useJWT().sign('1123'));
+
   return (
     <Flex
       w="full"

@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import { User } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
+import JWT from 'utils/jwt';
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,7 +29,9 @@ export default async function handler(
       },
     });
     res.setHeader('Set-Cookie', [
-      `token=${user.id}; Path=/; Max-Age=${60 * 60 * 24 * 7}`,
+      `token=${JWT().sign(user.id.toString())}; Path=/; Max-Age=${
+        60 * 60 * 24 * 7
+      }`,
     ]);
     res.status(201).json({ user });
   } catch (error) {
