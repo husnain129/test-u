@@ -10,7 +10,6 @@ export default async function handler(
     res.status(405).end('Method not allowed');
     return;
   }
-  console.log('req body = ', req.body);
   const { name, email, password, role } = req.body as User;
   try {
     const alreadyExist = await prisma.user.findUnique({
