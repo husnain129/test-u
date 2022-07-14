@@ -7,23 +7,49 @@ type InitialState = {
   loading: boolean;
   error: boolean;
 };
-const initialState = {} as unknown as InitialState;
 
-const { signup } = UserActions;
+const initialState: InitialState = {
+  user: {} as unknown as User,
+  loading: false,
+  error: false,
+};
+
+const { signup, login } = UserActions;
 
 export const userReducer = createReducer(initialState, ({ addCase }) => {
+  //------- Signup -------//
   addCase(signup.pending, (state) => {
     state.loading = true;
   })
+    .addCase(signup.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      state.error = false;
+      state.user.id = payload.id;
+      state.user.email = payload.email;
+      state.user.name = payload.name;
+      state.user.role = payload.role;
+      state.user.createdAt = payload.createdAt;
+    })
     .addCase(signup.rejected, (state) => {
       state.error = true;
       state.loading = false;
     })
-    .addCase(signup.fulfilled, (state, action) => {
+    // ------- Login ------- //
+    .addCase(login.pending, (state) => {
+      state.loading = true;
+    })
+
+    .addCase(login.fulfilled, (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state.user.id = action.payload.id;
-      state.user.email = action.payload.email;
-      state.user.name = action.payload.name;
+      state.user.id = payload.id;
+      state.user.email = payload.email;
+      state.user.name = payload.name;
+      state.user.role = payload.role;
+      state.user.createdAt = payload.createdAt;
+    })
+    .addCase(login.rejected, (state) => {
+      state.error = true;
+      state.loading = false;
     });
 });

@@ -1,3 +1,5 @@
+import { UserActions } from '@/redux/actions/user';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
   Box,
   Button,
@@ -11,12 +13,15 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
+import { User } from '@prisma/client';
 import { Field, Formik } from 'formik';
 import { useRouter } from 'next/router';
 import { SignupSchema } from '../utils/form-validation';
 
 const Signup = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { loading } = useAppSelector((state) => state.user);
   return (
     <Flex
       w="full"
@@ -49,14 +54,19 @@ const Signup = () => {
               role: 'STUDENT',
             }}
             validationSchema={SignupSchema}
-            onSubmit={(values) => {
-              console.log(JSON.stringify(values, null, 2));
+            onSubmit={({
+              email,
+              name,
+              password,
+              role,
+            }: Omit<User, 'id' | 'createdAt'>) => {
+              dispatch(UserActions.signup({ email, name, password, role }));
             }}
           >
             {({ handleSubmit, errors, touched }) => (
               <form onSubmit={handleSubmit}>
                 <VStack spacing={4} align="flex-start">
-                  <FormControl isInvalid={touched.name}>
+                  <FormControl>
                     <FormLabel htmlFor="name">Name</FormLabel>
                     <Field
                       w="20em"
@@ -121,7 +131,12 @@ const Signup = () => {
                       </Field>
                     </label>
                   </RadioGroup>
-                  <Button type="submit" colorScheme="purple" width="full">
+                  <Button
+                    isLoading={loading}
+                    type="submit"
+                    colorScheme="purple"
+                    width="full"
+                  >
                     Signup
                   </Button>
                 </VStack>

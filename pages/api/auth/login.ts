@@ -19,17 +19,17 @@ export default async function handler(
     });
 
     if (!user) {
-      res.status(401).end('Invalid email or password');
+      res.status(400).end('Invalid email or password');
       return;
     }
 
     if (user.password !== password) {
-      res.status(401).end('Invalid email or password');
+      res.status(400).end('Invalid email or password');
       return;
     }
 
     if (user.role !== role) {
-      res.status(401).end('User role not match with credentials');
+      res.status(400).end('User role not match with credentials');
       return;
     }
 

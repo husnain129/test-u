@@ -16,6 +16,8 @@ import { LoginSchema } from '../utils/form-validation';
 
 const Login = () => {
   const router = useRouter();
+  // const dispatch = useAppDispatch();
+
   return (
     <Flex
       w="full"
@@ -48,7 +50,7 @@ const Login = () => {
             }}
             validationSchema={LoginSchema}
             onSubmit={(values) => {
-              alert(JSON.stringify(values, null, 2));
+              console.log(JSON.stringify(values, null, 2));
             }}
           >
             {({ handleSubmit, errors, touched }) => (

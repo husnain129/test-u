@@ -10,6 +10,7 @@ export default async function handler(
     res.status(405).end('Method not allowed');
     return;
   }
+  console.log('req body = ', req.body);
   const { name, email, password, role } = req.body as User;
   try {
     const user: User = await prisma.user.create({
@@ -23,7 +24,7 @@ export default async function handler(
     res.setHeader('Set-Cookie', [
       `token=${user.id}; Path=/; Max-Age=${60 * 60 * 24 * 7}`,
     ]);
-    res.status(201).json({ message: 'User created' });
+    res.status(201).json({ user });
   } catch (error) {
     console.log('error', error);
     res.status(500).send(error);
