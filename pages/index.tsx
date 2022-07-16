@@ -1,8 +1,10 @@
 import { Flex, Text } from '@chakra-ui/react';
+import Navbar from 'layout/navbar';
 
 const Home = () => {
   return (
-    <Flex w="full" h="full">
+    <Flex w="full" flexDir={"column"} h="full">
+      <Navbar />
       <Text>Hello</Text>
     </Flex>
   );
