@@ -3,7 +3,7 @@ import Navbar from 'layout/navbar';
 
 const Home = () => {
   return (
-    <Flex w="full" flexDir={"column"} h="full">
+    <Flex w="full" flexDir={'column'} h="full">
       <Navbar />
       <Text>Hello</Text>
     </Flex>
