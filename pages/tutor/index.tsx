@@ -1,7 +1,7 @@
-import Dashboard from '@/components/tutor/dashboad/dashboard';
+import Tutor from '@/components/tutor';
 
 const TutorPage = () => {
-  return <Dashboard />;
+    return <Tutor />;
 };
 
 export default TutorPage;
