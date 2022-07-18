@@ -9,13 +9,13 @@ import { SiderBarData, TSideBarData, TSideBarProps } from './sidebar-data';
 const SideBarIcons = (title: TSideBarData) => {
     switch (title) {
         case 'Dasboard':
-            return <MdDashboard size={20} />;
+            return <MdDashboard size={"1.4em"} />;
         case 'Profile':
-            return <BiUser size={20} />;
+            return <BiUser size={"1.4em"} />;
         case 'History':
-            return <AiOutlineHistory size={20} />;
+            return <AiOutlineHistory size={"1.4em"} />;
         case 'Quizez':
-            return <BsJournalBookmarkFill size={20} />;
+            return <BsJournalBookmarkFill size={"1.4em"} />;
     }
 };
 
@@ -65,7 +65,7 @@ const Sidebar = ({ selectedSidebarItem, setSelectedSidebarItem }: TSideBarProps)
                     w="full"
                     px="1em"
                 >
-                    <FiLogOut size={20} />
+                    <FiLogOut size={"1.4em"} />
                     <Text fontSize={'1.1em'}>Logout</Text>
                 </Button>
             </Flex>

@@ -5,20 +5,15 @@ import { TSideBarData } from 'layout/tutor/sidebar/sidebar-data';
 import UpderDevelopment from 'layout/upder-development';
 import { useState } from 'react';
 
-
 const Page = (title: TSideBarData) => {
-    // switch (title) {
-    //     case 'Dasboard':
-    //         return <Dashboard />
-    // }
-    if (title === 'Dasboard') {
-        return <Dashboard />
-    } else {
-        return <UpderDevelopment />
+    switch (title) {
+        case 'Dasboard':
+            return <Dashboard />
+        default:
+            return <UpderDevelopment />
     }
+
 }
-
-
 
 const Tutor = () => {
     const [selectedSidebarItem, setSelectedSidebarItem] =
