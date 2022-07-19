@@ -4,11 +4,15 @@ import Sidebar from 'layout/tutor/sidebar/sidebar';
 import { TSideBarData } from 'layout/tutor/sidebar/sidebar-data';
 import UpderDevelopment from 'layout/upder-development';
 import { useState } from 'react';
+import Quiz from './quiz/quiz';
 
 const Page = (title: TSideBarData) => {
     switch (title) {
         case 'Dasboard':
             return <Dashboard />
+
+        case "Quizez":
+            return <Quiz />
         default:
             return <UpderDevelopment />
     }
